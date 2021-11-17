@@ -1,14 +1,30 @@
+import React from 'react';
 import imageIcon from "../assets/img/image-icon.png";
 
-function Header() {
-    return (
-        <header className="bg-gray-200 flex justify-between items-center px-5">
-            <img src={imageIcon} alt="image icon" className="" />
-            <form method="post" className="flex-grow mx-6">
-                <input type="text" placeholder="Search in unsplash..." className="w-full outline-none p-2.5" />
-            </form>
-        </header>
-    )
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            formValue: ""
+        }
+    }
+    formSubmit = (e) => {
+        this.props.onFormSubmit(this.state.formValue)
+        e.preventDefault();
+    }
+    inputOnChange = (e) => {
+        this.setState({ formValue: e.target.value })
+    }
+    render() {
+        return (
+            <header className="bg-gray-200 flex justify-between items-center px-5">
+                <img src={imageIcon} alt="image icon" className="" />
+                <form method="post" onSubmit={this.formSubmit} className="flex-grow mx-6">
+                    <input type="text" placeholder="Search in unsplash..." onChange={this.inputOnChange} className="w-full outline-none p-2.5" />
+                </form>
+            </header>
+        )
+    }
 }
 
 export default Header;
