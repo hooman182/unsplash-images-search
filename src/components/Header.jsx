@@ -20,7 +20,7 @@ class Header extends React.Component {
             <header className="bg-gray-200 flex justify-between items-center px-5">
                 <img src={imageIcon} alt="image icon" className="" />
                 <form method="post" onSubmit={this.formSubmit} className="flex-grow mx-6">
-                    <input type="text" placeholder="Search in unsplash..." onChange={this.inputOnChange} className="w-full outline-none p-2.5" />
+                    <input type="text" placeholder="Search on unsplash..." onChange={this.inputOnChange} className="w-full outline-none p-2.5" />
                 </form>
             </header>
         )
