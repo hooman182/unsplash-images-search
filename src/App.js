@@ -1,28 +1,32 @@
 import React from 'react';
 import Header from './components/Header';
-import axios from 'axios';
+import ImageCard from './components/ImageCard';
+import fetchData from './services/fetchData';
 
 class App extends React.Component {
   state = {
-    formValue: "",
-    imagesList: []
+    imagesData: [],
   }
-  handleForm = (data) => {
-    this.setState({ formValue: data })
-  }
+
   componentDidMount() {
-    axios({
-      method: 'get',
-      baseURL: 'https://api.unsplash.com/photos',
-      headers: {
-        Authorization: 'Client-ID YPoo9no8tT6YquPzkE8NEb4wZXMutHioEOTOLKatOOA'
-      },
-    }).then(res => console.log(res))
+    fetchData.get('/photos')
+      .then(res => { this.setState({ imagesData: res.data }) })
+      .catch(err => console.log(err))
   }
+
+  handleForm = (data) => {
+    fetchData.get('/search/photos', { params: { query: data } })
+      .then(res => { this.setState({ imagesData: res.data.results }) })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <>
         <Header onFormSubmit={this.handleForm} />
+        <main>
+          {this.state.imagesData.map(item => <ImageCard key={item.id} data={item} />)}
+        </main>
       </>
     )
   }
