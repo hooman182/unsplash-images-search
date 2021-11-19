@@ -17,7 +17,7 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <header className="bg-gray-200 flex justify-between items-center px-5">
+            <header className="bg-gray-200 flex justify-between items-center md:px-5">
                 <img src={imageIcon} alt="image icon" className="" />
                 <form method="post" onSubmit={this.formSubmit} className="flex-grow mx-6">
                     <input type="text" placeholder="Search on unsplash..." onChange={this.inputOnChange} className="w-full outline-none p-2.5" />
