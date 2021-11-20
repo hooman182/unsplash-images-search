@@ -9,18 +9,25 @@ class Header extends React.Component {
         }
     }
     formSubmit = (e) => {
-        this.props.onFormSubmit(this.state.formValue)
+        this.props.onFormSubmit(this.state.formValue);
+        this.setState({ formValue: "" });
         e.preventDefault();
     }
     inputOnChange = (e) => {
-        this.setState({ formValue: e.target.value })
+        this.setState({ formValue: e.target.value });
     }
     render() {
         return (
             <header className="bg-gray-200 flex justify-between items-center md:px-5">
                 <img src={imageIcon} alt="image icon" className="" />
                 <form method="post" onSubmit={this.formSubmit} className="flex-grow mx-6">
-                    <input type="text" placeholder="Search on unsplash..." onChange={this.inputOnChange} className="w-full outline-none p-2.5" />
+                    <input
+                        type="text"
+                        placeholder="Search on unsplash..."
+                        value={this.state.formValue}
+                        onChange={this.inputOnChange}
+                        className="w-full outline-none p-2.5"
+                    />
                 </form>
             </header>
         )
