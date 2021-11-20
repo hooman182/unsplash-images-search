@@ -24,7 +24,7 @@ class App extends React.Component {
     return (
       <>
         <Header onFormSubmit={this.handleForm} />
-        <main>
+        <main className="main">
           {this.state.imagesData.map(item => <ImageCard key={item.id} data={item} />)}
         </main>
       </>
